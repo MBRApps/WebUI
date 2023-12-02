@@ -1,0 +1,36 @@
+{
+  "posts": [
+    {
+      "Name": "Naresh",
+      "Email": "Nareshg01@gmail.com",
+      "City": "Kurnool",
+      "Mobile": "9848012345",
+      "id": 2
+    },
+    {
+      "Name": "Steve Jobs",
+      "Email": "stevesmith@gmail.com",
+      "City": "Hyderabad",
+      "Mobile": "9949012345",
+      "id": 3
+    },
+    {
+      "Name": "Jaggesh",
+      "Email": "jag257@gmail.com",
+      "City": "Bengaluru",
+      "Mobile": "7896547850",
+      "id": 4
+    },
+    {
+      "Name": "John",
+      "Email": "john258@gmail.com",
+      "City": "Hyderabad",
+      "Mobile": "9988774455",
+      "id": 5
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

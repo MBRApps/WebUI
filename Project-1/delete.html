@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <script type="text/javascript">
+        function fndeleteData()
+        {
+            var id= new URLSearchParams(window.location.search).get('id')
+            //console.log(id)
+            fetch('http://localhost:3000/posts/'+id,{
+                method:'DELETE'
+            }).then(function(result){
+                if(result.status==200)
+                {
+                    alert('Record Deleted Successfully')
+                    window.location='index.html'
+                }
+            })
+        }
+    </script>
+</head>
+<body onload="fndeleteData()">
+    
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>    
+    <script type="text/javascript">
+        function fnSubmitData()
+        {
+            var id=document.getElementById('txtId');
+            var name=document.getElementById('txtName');
+            var email=document.getElementById('txtEmail');
+            var city=document.getElementById('txtCity');
+            var mobile=document.getElementById('txtMobile');
+
+            var data=
+            {Name:name.value,Email:email.value,City:city.value,Mobile:mobile.value}
+            console.log(data)
+
+            fetch('http://localhost:3000/posts/'+id.value,{
+                method:'PUT',headers:{'content-type':'application/json'},
+                body:JSON.stringify(data)
+            }).then(function(result){
+                if(result.status==200)
+                {
+                    alert('User Record Updated Successfully!')
+                    id.value=name.value=email.value=city.value=mobile.value=''
+                    window.location='index.html'
+                }
+            })
+        
+        }
+
+        function loadData()
+        {
+            var id= new URLSearchParams(window.location.search).get('id')
+            //console.log(id)
+            if(id!=null)
+            {
+                fetch('http://localhost:3000/posts/'+id,{
+                    method:'GET'
+                }).then(function(result){
+                    return result.json()
+                }).then(function(res){
+                    console.log(res)
+                    document.getElementById('txtId').value=res.id
+                    document.getElementById('txtName').value=res.Name
+                    document.getElementById('txtEmail').value=res.Email
+                    document.getElementById('txtCity').value=res.City
+                    document.getElementById('txtMobile').value=res.Mobile
+                })
+            }
+        }
+    </script>
+</head>
+<body class="container" onload="loadData()">
+    <div class="alert alert-success">
+        <h1>Edit User</h1>
+    </div>
+    <form class="container">
+        <div class="row mt-5 d-none">
+            <div class="col">
+                <input type="text" id="txtId" class="form-control" 
+                placeholder="Enter Id"/>
+            </div>
+        </div>
+    <div class="row mt-5">
+        <div class="col">
+            <input type="text" id="txtName" class="form-control" 
+            placeholder="Enter Name"/>
+        </div>
+        <div class="col">
+            <input type="email" id="txtEmail" class="form-control" 
+            placeholder="Enter E-Mail"/>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <input type="text" id="txtCity" class="form-control" 
+            placeholder="Enter City"/>
+        </div>
+        <div class="col">
+            <input type="text" id="txtMobile" class="form-control" 
+            placeholder="Enter Mobile"/>
+        </div>        
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <button type="button" class="btn btn-success" onclick="fnSubmitData()">Update User Details</button>
+        </div>
+    </div>
+</form>
+</body>
+</html>

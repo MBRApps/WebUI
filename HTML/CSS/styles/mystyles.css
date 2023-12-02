@@ -1,0 +1,7 @@
+p{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 32px;
+}
+p span{
+    color:orange;
+}
